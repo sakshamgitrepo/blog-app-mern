@@ -1,7 +1,21 @@
 import React, { useEffect, useState } from 'react'
+import ReactQuill from 'react-quill';
 import { Navigate, useParams } from 'react-router-dom';
-import Editor from '../components/Editor';
 
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["link", "image"],
+    ["clean"],
+  ],
+};
 
 const EditPost = () => {
   const {id} = useParams();
@@ -28,6 +42,7 @@ const EditPost = () => {
     data.set('title', title);
     data.set('summary', summary);
     data.set('content', content);
+    data.set('id', id);
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
@@ -36,8 +51,9 @@ const EditPost = () => {
       body: data,
       credentials: 'include',
     });
-    setRedirect(false)
-    console.log(response);
+    if (response.ok) {
+      setRedirect(true);
+    }  
   }
 
   if (redirect) {
@@ -62,10 +78,14 @@ const EditPost = () => {
     onChange={(e) => setFiles(e.target.files)} 
     />
 
-    <Editor content={content} setContent={setContent} />
+<ReactQuill
+          value={content}
+          onChange={(newValue) => setContent(newValue)}
+          modules={modules}
+        /> 
    
     <button type="submit" style={{ marginTop: "5px" }}>
-      Create Post
+      Update Post
     </button>
   </form>
   )

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital@1&family=Poppins&display=swap');
   header{
     display:flex;
     justify-content:space-between;
@@ -6,6 +6,7 @@
     align-items: center;
     padding: 1rem;
     border-bottom: 1px solid gray;
+    position: relative;
   }
   header a{
     text-decoration:none;
@@ -13,7 +14,9 @@
   }
   header a.logo{
     font-weight: bold;
-    font-size: 1.7rem;
+    font-size: 1.9rem;
+    font-family: 'Kanit', sans-serif;
+
   }
   header nav{
     display:flex;
@@ -22,7 +25,7 @@
   header nav .navlink{
     display: flex;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     gap: 4px;
     cursor: pointer;
     box-shadow: 1px 1px 3px 1px ;
@@ -35,7 +38,23 @@
   header nav .navlink:hover{
    box-shadow: 1px 1px 1px 1px ;
   }
+  .profilename{
+    font-size: 1.2rem;
+    font-weight: 600;
+    position: absolute;
+      top: 2px;
+      left: .7rem;
+      border-bottom: 1px solid blueviolet;
+
+  }
   @media screen and (min-width: 700px) {
+    .profilename{
+      font-size: 1.5rem;
+      font-weight: 600;
+      position: absolute;
+      top: -2.5rem;
+      left: 2px;
+    }
 
     header nav .navlink{
         font-size: 1.6rem ;
@@ -44,7 +63,7 @@
         font-size: 1.5rem;
         }
         header a.logo{
-            font-size: 2rem;
+            font-size: 2.2rem;
         }
   }
 

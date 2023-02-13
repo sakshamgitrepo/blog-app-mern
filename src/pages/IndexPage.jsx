@@ -4,6 +4,7 @@ import Post from "../components/Post";
 const IndexPage = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
+    const fetchApi =()=>{
     fetch("http://localhost:4000/blogs/post", {
       credentials: "include",
     }).then((response) => {
@@ -11,6 +12,8 @@ const IndexPage = () => {
         setPosts(data);
       });
     });
+  }
+  fetchApi()
   }, []);
   return (
     <>

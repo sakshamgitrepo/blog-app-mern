@@ -2,32 +2,42 @@ import React, { useContext, useState } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../contextApi/UserContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const { setUserInfo } = useContext(UserContext);
- 
+
   const login = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/user/login", {
+    await fetch("http://localhost:4000/user/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-    });
-    if (response.ok) {
-      response.json().then(userData => {
-        setUserInfo(userData);
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserInfo(data);
         setRedirect(true);
+      })
+      .catch((error) => {
+        toast.error("Wrong Credentials Or Fetch Failed", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
-     
-    } else {
-      alert("wrong credentials");
-    }
-    console.log(response);
   };
+
   if (redirect) {
     return <Navigate to={"/"} />;
   }
@@ -50,6 +60,7 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button>Login</button>
+        <ToastContainer />
       </form>
     </>
   );
