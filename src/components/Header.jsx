@@ -19,7 +19,9 @@ const Header = () => {
       });
     };
     fetchApi()
-  }, []);
+    console.log('render');
+  }, [setUserInfo]);
+
 
   function logout() {
     fetch("http://localhost:4000/user/logout", {
@@ -37,7 +39,7 @@ const Header = () => {
       </Link>
       {userName ? (
         <>
-          <p className="profilename">Welcome, {userName}</p>
+          <p className="profilename">User : {userName}</p>
           <nav>
             <Link to="/create" className="navlink">
               <BsFillPlusCircleFill className="authIcons" /> Create Post

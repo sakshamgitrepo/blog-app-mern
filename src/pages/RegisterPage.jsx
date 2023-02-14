@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, Toaster } from "react-hot-toast";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
@@ -16,24 +15,17 @@ const RegisterPage = () => {
       headers: { "Content-Type": "application/json" },
     })
       .then(() => {
-        alert("registration successful");
+        alert('Registraion Successfull')
         navigate("/login");
       })
       .catch(() => {
-        toast.error("Error in Registration", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.error("Error in Registration")
+        
       });
   };
 
   return (
+    <>
     <form className="register" onSubmit={register}>
       <h1>
         <FaUser /> Register
@@ -53,8 +45,9 @@ const RegisterPage = () => {
         required
       />
       <button>Register</button>
-      <ToastContainer />
+      <Toaster />
     </form>
+    </>
   );
 };
 

@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { FaSignInAlt } from "react-icons/fa";
 import { Navigate } from "react-router-dom";
 import { UserContext } from "../contextApi/UserContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, Toaster } from "react-hot-toast";
+
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -25,16 +25,7 @@ const LoginPage = () => {
         setRedirect(true);
       })
       .catch((error) => {
-        toast.error("Wrong Credentials Or Fetch Failed", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        toast.error("Wrong Credenttials Or Fetch failed")
       });
   };
 
@@ -60,7 +51,7 @@ const LoginPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button>Login</button>
-        <ToastContainer />
+        <Toaster />
       </form>
     </>
   );

@@ -3,6 +3,8 @@ import Post from "../components/Post";
 
 const IndexPage = () => {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     const fetchApi =()=>{
     fetch("http://localhost:4000/blogs/post", {
@@ -10,15 +12,21 @@ const IndexPage = () => {
     }).then((response) => {
       response.json().then((data) => {
         setPosts(data);
+        setLoading(false)
       });
     });
   }
   fetchApi()
   }, []);
+
+  
   return (
     <>
+    {loading && <p style={{fontSize:'1.5rem', fontWeight:'bold',textAlign:'center'}}>Loading...</p>}
       {posts.length > 0 &&
         posts.map((post) => <Post {...post} key={post._id} />)}
+
+    
     </>
   );
 };
