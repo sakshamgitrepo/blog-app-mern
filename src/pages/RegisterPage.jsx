@@ -9,44 +9,45 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const register = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:4000/user/register", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-Type": "application/json" },
-    })
+    await fetch("/user/register",
+ {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+        headers: { "Content-Type": "application/json" },
+      }
+    )
       .then(() => {
-        alert('Registraion Successfull')
+        alert("Registraion Successfull");
         navigate("/login");
       })
       .catch(() => {
-        toast.error("Error in Registration")
-        
+        toast.error("Error in Registration");
       });
   };
 
   return (
     <>
-    <form className="register" onSubmit={register}>
-      <h1>
-        <FaUser /> Register
-      </h1>
-      <input
-        type="text"
-        placeholder="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button>Register</button>
-      <Toaster />
-    </form>
+      <form className="register" onSubmit={register}>
+        <h1>
+          <FaUser /> Register
+        </h1>
+        <input
+          type="text"
+          placeholder="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button>Register</button>
+        <Toaster />
+      </form>
     </>
   );
 };

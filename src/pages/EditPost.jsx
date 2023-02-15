@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import { Navigate, useParams } from 'react-router-dom';
+import { toast, Toaster } from "react-hot-toast";
 
 const modules = {
   toolbar: [
@@ -26,15 +27,18 @@ const EditPost = () => {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:4000/blogs/post/'+id)
+    const fetchApi = async()=>{
+    await fetch('/blogs/post/'+id)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
           setContent(postInfo.content);
           setSummary(postInfo.summary);
         });
-      });
-  }, []);
+      })
+    }
+    fetchApi()
+  }, [id]);
 
   const updatePostHandler = async (e)=>{
     e.preventDefault()
@@ -46,18 +50,21 @@ const EditPost = () => {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch('http://localhost:4000/blogs/post', {
+ await fetch('/blogs/post'
+ , {
       method: 'PUT',
       body: data,
       credentials: 'include',
-    });
-    if (response.ok) {
-      setRedirect(true);
-    }  
+    }).then((response) => {
+       setRedirect(true)
+    }).catch(()=>{
+      toast.error("error in editing")
+    })
+     
   }
 
   if (redirect) {
-    return <Navigate to={'/'}/>
+    return <Navigate to={`/post/${id}`}/>
    }
   return (
     <form className="editPost" onSubmit={updatePostHandler}>
@@ -87,6 +94,7 @@ const EditPost = () => {
     <button type="submit" style={{ marginTop: "5px" }}>
       Update Post
     </button>
+    <Toaster />
   </form>
   )
 }

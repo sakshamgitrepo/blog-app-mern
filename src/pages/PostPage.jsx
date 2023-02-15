@@ -13,7 +13,8 @@ const PostPage = () => {
 
   useEffect(() => {
     const fetchApi = () => {
-      fetch(`http://localhost:4000/blogs/post/${id}`).then((response) => {
+      fetch(`/blogs/post/${id}`)
+      .then((response) => {
         response.json().then((data) => {
           setPostInfo(data);
           setLoading(false);
@@ -21,7 +22,7 @@ const PostPage = () => {
       });
     };
     fetchApi();
-  }, []);
+  }, [id]);
   if (!postInfo) return "";
   return (
     <>
@@ -31,7 +32,7 @@ const PostPage = () => {
             fontSize: "1.5rem",
             fontWeight: "bold",
             textAlign: "center",
-           }}
+          }}
         >
           Loading...
         </p>
@@ -53,7 +54,7 @@ const PostPage = () => {
             : null}
 
           <div className="postpageImg">
-            <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
+            <img src={`/${postInfo.cover}`} alt="postpage img" />
           </div>
           <div dangerouslySetInnerHTML={{ __html: postInfo.content }} />
         </div>

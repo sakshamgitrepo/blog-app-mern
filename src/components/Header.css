@@ -47,7 +47,7 @@
       border-bottom: 1px solid blueviolet;
 
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 826px) {
     .profilename{
       font-size: 1.5rem;
       font-weight: 600;
@@ -67,7 +67,7 @@
         }
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 826px) {
     header{
       flex-direction: column;
       gap: .5rem;

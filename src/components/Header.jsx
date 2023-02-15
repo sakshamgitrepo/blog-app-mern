@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { FaSignInAlt, FaUser, FaSignOutAlt } from "react-icons/fa";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import "./Header.css";
@@ -7,10 +7,10 @@ import { UserContext } from "../contextApi/UserContext";
 
 const Header = () => {
   const { setUserInfo, userInfo } = useContext(UserContext);
-  const navigate = useNavigate();
   useEffect(() => {
     const fetchApi = async() => {
-     await fetch("http://localhost:4000/user/profile", {
+     await fetch("/user/profile", 
+     {
         credentials: "include",
       }).then((response) => {
         response.json().then((data) => {
@@ -19,17 +19,16 @@ const Header = () => {
       });
     };
     fetchApi()
-    console.log('render');
   }, [setUserInfo]);
 
 
   function logout() {
-    fetch("http://localhost:4000/user/logout", {
+    fetch("/user/logout"
+    , {
       credentials: "include",
       method: "POST",
     });
     setUserInfo(null);
-    navigate("/");
   }
   const userName = userInfo?.username;
   return (

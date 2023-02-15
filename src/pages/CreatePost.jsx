@@ -33,7 +33,8 @@ const CreatePost = () => {
     data.set("content", content);
     data.set("file", files[0]);
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/blogs/post", {
+    const response = await fetch("/blogs/post",
+    {
       method: "POST",
       body: data,
       credentials: "include",
@@ -42,7 +43,6 @@ const CreatePost = () => {
       setRedirect(true);
     }
   };
-  console.log(content);
 if (redirect) {
  return <Navigate to={'/'}/>
 }

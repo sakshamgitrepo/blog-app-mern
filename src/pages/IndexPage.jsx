@@ -7,7 +7,8 @@ const IndexPage = () => {
 
   useEffect(() => {
     const fetchApi =()=>{
-    fetch("http://localhost:4000/blogs/post", {
+    fetch("/blogs/post ",
+     {
       credentials: "include",
     }).then((response) => {
       response.json().then((data) => {

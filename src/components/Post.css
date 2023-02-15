@@ -48,7 +48,7 @@ div.post{
 }
 
   
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 826px) {
  
   div.post div.texts h2{
     margin:0;
