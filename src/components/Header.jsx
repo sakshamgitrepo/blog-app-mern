@@ -5,11 +5,13 @@ import { BsFillPlusCircleFill } from "react-icons/bs";
 import "./Header.css";
 import { UserContext } from "../contextApi/UserContext";
 
+
+
 const Header = () => {
   const { setUserInfo, userInfo } = useContext(UserContext);
   useEffect(() => {
     const fetchApi = async() => {
-     await fetch("/user/profile", 
+     await fetch(`/user/profile`, 
      {
         credentials: "include",
       }).then((response) => {
@@ -23,7 +25,7 @@ const Header = () => {
 
 
   function logout() {
-    fetch("/user/logout"
+    fetch(`user/logout`
     , {
       credentials: "include",
       method: "POST",

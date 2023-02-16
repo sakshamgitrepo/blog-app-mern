@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
 
+
 const IndexPage = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchApi =()=>{
-    fetch("/blogs/post ",
+    fetch(`/blogs/post`,
      {
       credentials: "include",
     }).then((response) => {

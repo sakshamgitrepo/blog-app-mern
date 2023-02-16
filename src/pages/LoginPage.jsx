@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   const login = async (e) => {
     e.preventDefault();
-    await fetch("/user/login", 
+    await fetch(`/user/login`, 
     {
       method: "POST",
       body: JSON.stringify({ username, password }),

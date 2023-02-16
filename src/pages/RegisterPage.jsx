@@ -3,13 +3,17 @@ import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 
+
+
+
+
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const register = async (e) => {
     e.preventDefault();
-    await fetch("/user/register",
+    await fetch(`/user/register`,
  {
         method: "POST",
         body: JSON.stringify({ username, password }),

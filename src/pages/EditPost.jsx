@@ -18,6 +18,7 @@ const modules = {
   ],
 };
 
+
 const EditPost = () => {
   const {id} = useParams();
   const [title, setTitle] = useState("");
@@ -28,7 +29,7 @@ const EditPost = () => {
 
   useEffect(() => {
     const fetchApi = async()=>{
-    await fetch('/blogs/post/'+id)
+    await fetch(`/blogs/post/${id}`)
       .then(response => {
         response.json().then(postInfo => {
           setTitle(postInfo.title);
@@ -50,7 +51,7 @@ const EditPost = () => {
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
- await fetch('/blogs/post'
+ await fetch(`/blogs/post`
  , {
       method: 'PUT',
       body: data,

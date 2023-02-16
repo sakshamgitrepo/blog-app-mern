@@ -19,6 +19,7 @@ const modules = {
 };
 
 
+
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
@@ -33,7 +34,7 @@ const CreatePost = () => {
     data.set("content", content);
     data.set("file", files[0]);
     e.preventDefault();
-    const response = await fetch("/blogs/post",
+    const response = await fetch(`/blogs/post`,
     {
       method: "POST",
       body: data,

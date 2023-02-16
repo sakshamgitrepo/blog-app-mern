@@ -5,6 +5,8 @@ import { formatISO9075 } from "date-fns";
 import { UserContext } from "../contextApi/UserContext";
 import { FiEdit } from "react-icons/fi";
 
+
+
 const PostPage = () => {
   const { id } = useParams();
   const [postInfo, setPostInfo] = useState(null);
