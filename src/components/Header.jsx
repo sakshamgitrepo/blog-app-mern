@@ -18,6 +18,9 @@ const Header = () => {
         response.json().then((data) => {
           setUserInfo(data);
         });
+      }).catch((err)=>{
+        alert(err)
+        console.log(err);
       });
     };
     fetchApi()
